@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { data } from "../../lib/data";
+import { nanoid } from "nanoid";
 
 export default function Card({ card }) {
   return (
@@ -7,20 +7,21 @@ export default function Card({ card }) {
       {" "}
       {card.map((item) => {
         return (
-          <>
-            <StyledSection>
+          <ul>
+            <StyledListItem key={nanoid()}>
               <h2>{item.inputThoughts}</h2>
               <p>{item.inputAuthor}</p>
-            </StyledSection>
-          </>
+            </StyledListItem>
+          </ul>
         );
       })}
     </>
   );
 }
 
-const StyledSection = styled.section`
+const StyledListItem = styled.li`
   border: 3px solid darkgray;
   margin: 30px 30px;
   padding: 20px;
+  list-style: none;
 `;
