@@ -1,3 +1,5 @@
+import { nanoid } from "nanoid";
+
 export default function Form({ onChangeCard }) {
   return (
     <form onSubmit={handleSubmit}>
@@ -15,7 +17,9 @@ export default function Form({ onChangeCard }) {
     event.preventDefault();
     const inputThoughts = event.target.thoughts.value;
     const inputAuthor = event.target.author.value;
-    const inputObject = { inputAuthor, inputThoughts };
+    const key = nanoid();
+    const inputObject = { inputAuthor, inputThoughts, key };
+
     onChangeCard(inputObject);
     event.target.reset();
   }

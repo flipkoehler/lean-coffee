@@ -1,16 +1,19 @@
 import styled from "styled-components";
-import { nanoid } from "nanoid";
+import { FaTrashAlt } from "react-icons/fa";
 
-export default function Card({ card }) {
+export default function Card({ card, onHandleDelete }) {
   return (
     <>
-      {" "}
       {card.map((item) => {
         return (
-          <ul>
-            <StyledListItem key={nanoid()}>
+          // eslint-disable-next-line react/jsx-key
+          <ul key={item.key}>
+            <StyledListItem>
               <h2>{item.inputThoughts}</h2>
               <p>{item.inputAuthor}</p>
+              <button onClick={() => onHandleDelete(item.key)}>
+                <FaTrashAlt />
+              </button>
             </StyledListItem>
           </ul>
         );

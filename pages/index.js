@@ -10,10 +10,16 @@ export default function HomePage() {
     setCard([inputValues, ...card]);
   };
 
+  function handleDelete(id) {
+    console.log(id);
+    console.log(card);
+    setCard(card.filter((unoCard) => unoCard.key !== id));
+  }
+
   return (
     <div>
       <Header />
-      <Card card={card} />
+      <Card card={card} onHandleDelete={handleDelete} />
       <Form onChangeCard={changeCard} />
     </div>
   );
