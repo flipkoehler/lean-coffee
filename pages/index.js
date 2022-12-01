@@ -5,20 +5,21 @@ import Header from "../components/Header.js/Header";
 
 export default function HomePage() {
   const [card, setCard] = useState([]);
-  console.log(card, "card");
-
-  // function changeCard({ inputAuthor, inputThoughts }) {
-  //   setCard([{ inputAuthor, inputThoughts }]);
-  // }
 
   const changeCard = (inputValues) => {
-    setCard([...card, inputValues]);
+    setCard([inputValues, ...card]);
   };
+
+  function handleDelete(id) {
+    console.log(id);
+    console.log(card);
+    setCard(card.filter((unoCard) => unoCard.key !== id));
+  }
 
   return (
     <div>
       <Header />
-      <Card card={card} />
+      <Card card={card} onHandleDelete={handleDelete} />
       <Form onChangeCard={changeCard} />
     </div>
   );
