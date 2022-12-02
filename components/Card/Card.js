@@ -1,7 +1,10 @@
 import styled from "styled-components";
-import { FaTrashAlt } from "react-icons/fa";
+import { FaTrashAlt, FaEdit } from "react-icons/fa";
+import { useState } from "react";
 
-export default function Card({ card, onHandleDelete }) {
+export default function Card({ card, onHandleDelete, onEditSave }) {
+  const [edit, setEdit] = useState(true);
+
   return (
     <>
       {card.map((item) => {
@@ -9,10 +12,39 @@ export default function Card({ card, onHandleDelete }) {
           // eslint-disable-next-line react/jsx-key
           <ul key={item.key}>
             <StyledListItem>
-              <h2>{item.inputThoughts}</h2>
-              <p>{item.inputAuthor}</p>
+              <h2>{item.text}</h2>
+              <input
+                placeholder={item.text}
+                id="editFieldThoughts"
+                name="editFieldThoughts"
+                hidden={edit}
+              ></input>
+              <p>{item.name}</p>
+              <input
+                placeholder={item.name}
+                id="editFieldAuthor"
+                name="editFieldAuthor"
+                hidden={edit}
+              ></input>
+              <button
+                type="submit"
+                hidden={edit}
+                onClick={() =>
+                  onEditSave(
+                    item.key,
+                    editFieldThoughts.value,
+                    editFieldAuthor.value
+                  )
+                }
+              >
+                save
+              </button>
+
               <button onClick={() => onHandleDelete(item.key)}>
                 <FaTrashAlt />
+              </button>
+              <button onClick={() => setEdit(!edit)}>
+                <FaEdit />
               </button>
             </StyledListItem>
           </ul>
