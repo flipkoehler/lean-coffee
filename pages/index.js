@@ -1,10 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Card from "../components/Card/Card";
 import Form from "../components/Form/Form";
 import Header from "../components/Header.js/Header";
 
 export default function HomePage() {
   const [card, setCard] = useState([]);
+
+  async function getQuestions() {
+    const response = await fetch(
+      "https://lean-coffee-board-api-nextjs.vercel.app/api/questions"
+    );
+    const questionList = await response.json();
+    setCard(questionList);
+  }
+
+  useEffect(() => {
+    getQuestions();
+  }, []);
+
+  console.log(card);
 
   const handleGetData = (inputValues) => {
     setCard([inputValues, ...card]);
@@ -21,8 +35,8 @@ export default function HomePage() {
         if (item.key === key) {
           return {
             key: key,
-            inputThoughts: newContent,
-            inputAuthor: newAuthor,
+            text: newContent,
+            name: newAuthor,
           };
         } else {
           return item;

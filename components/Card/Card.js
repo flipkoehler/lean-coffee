@@ -12,16 +12,16 @@ export default function Card({ card, onHandleDelete, onEditSave }) {
           // eslint-disable-next-line react/jsx-key
           <ul key={item.key}>
             <StyledListItem>
-              <h2>{item.inputThoughts}</h2>
+              <h2>{item.text}</h2>
               <input
-                placeholder={item.inputThoughts}
+                placeholder={item.text}
                 id="editFieldThoughts"
                 name="editFieldThoughts"
                 hidden={edit}
               ></input>
-              <p>{item.inputAuthor}</p>
+              <p>{item.name}</p>
               <input
-                placeholder={item.inputAuthor}
+                placeholder={item.name}
                 id="editFieldAuthor"
                 name="editFieldAuthor"
                 hidden={edit}

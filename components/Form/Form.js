@@ -15,10 +15,10 @@ export default function Form({ getData }) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    const inputThoughts = event.target.thoughts.value;
-    const inputAuthor = event.target.author.value;
+    const text = event.target.thoughts.value;
+    const name = event.target.author.value;
     const key = nanoid();
-    const inputObject = { inputAuthor, inputThoughts, key };
+    const inputObject = { name, text, key };
     console.log(inputObject);
 
     getData(inputObject);
