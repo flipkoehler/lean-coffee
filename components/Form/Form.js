@@ -1,6 +1,6 @@
 import { nanoid } from "nanoid";
 
-export default function Form({ onChangeCard }) {
+export default function Form({ getData }) {
   return (
     <form onSubmit={handleSubmit}>
       <fieldset>
@@ -19,8 +19,9 @@ export default function Form({ onChangeCard }) {
     const inputAuthor = event.target.author.value;
     const key = nanoid();
     const inputObject = { inputAuthor, inputThoughts, key };
+    console.log(inputObject);
 
-    onChangeCard(inputObject);
+    getData(inputObject);
     event.target.reset();
   }
 }

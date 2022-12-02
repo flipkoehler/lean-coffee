@@ -6,21 +6,36 @@ import Header from "../components/Header.js/Header";
 export default function HomePage() {
   const [card, setCard] = useState([]);
 
-  const changeCard = (inputValues) => {
+  const handleGetData = (inputValues) => {
     setCard([inputValues, ...card]);
   };
 
   function handleDelete(id) {
-    console.log(id);
-    console.log(card);
     setCard(card.filter((unoCard) => unoCard.key !== id));
+  }
+
+  function onEditSave(key, newContent, newAuthor) {
+    console.log(key, newContent, newAuthor);
+    setCard(
+      card.map((item) => {
+        if (item.key === key) {
+          return {
+            key: key,
+            inputThoughts: newContent,
+            inputAuthor: newAuthor,
+          };
+        } else {
+          return item;
+        }
+      })
+    );
   }
 
   return (
     <div>
       <Header />
-      <Card card={card} onHandleDelete={handleDelete} />
-      <Form onChangeCard={changeCard} />
+      <Card card={card} onHandleDelete={handleDelete} onEditSave={onEditSave} />
+      <Form getData={handleGetData} />
     </div>
   );
 }
